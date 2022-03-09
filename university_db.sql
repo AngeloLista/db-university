@@ -29,10 +29,26 @@ FROM `degrees`
 WHERE level = 'magistrale'
 
 -- Da quanti dipartimenti è composta l'università? (12)
-SELECT COUNT(id) as NumberOfDepartments
+SELECT COUNT(id) AS NumberOfDepartments
 FROM `departments`
 
 -- Quanti sono gli insegnanti che non hanno un numero di telefono? (50
-SELECT COUNT(id) as TeachersWithoutNumber
+SELECT COUNT(id) AS TeachersWithoutNumber
 FROM `teachers`
 WHERE phone IS NULL
+
+
+------ GROUP BY ------
+
+
+-- Contare quanti iscritti ci sono stati ogni anno
+SELECT COUNT(id) AS `enrolments_number_per_year`, YEAR(`enrolment_date`) FROM `students` GROUP BY YEAR(`enrolment_date`)
+
+-- Contare gli insegnanti che hanno l'ufficio nello stesso edificio
+SELECT COUNT(id) AS `teachers_sharing_the_same_office`, `office_address` FROM `teachers` GROUP BY `office_address`
+
+-- Calcolare la media dei voti di ogni appello d'esame
+SELECT `exam_id` as `appello`, AVG(`vote`) as `vote_average` FROM `exam_student` GROUP BY `exam_id`
+
+-- Contare quanti corsi di laurea ci sono per ogni dipartimento
+SELECT COUNT(`name`) as `numero_corsi_di_laurea_per_dipartimento`, `department_id` FROM `degrees` GROUP BY `department_id`
