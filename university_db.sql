@@ -1,3 +1,6 @@
+------ SELECT ------
+
+
 -- Selezionare tutti gli studenti nati nel 1990 (160)
 SELECT *
 FROM `students`
@@ -9,9 +12,9 @@ FROM `courses`
 WHERE cfu >= 10
 
 -- Selezionare tutti gli studenti che hanno più di 30 anni
-SELECT *
+SELECT *, TIMESTAMPDIFF(YEAR, date_of_birth, "2022-03-09") as `age`
 FROM `students`
-WHERE date_of_birth >= '1992-03-09'
+WHERE DATEDIFF("2022-03-09", date_of_birth) >= 30
 
 -- Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di laurea (286)
 SELECT *
