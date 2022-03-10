@@ -56,7 +56,7 @@ GROUP BY `office_address`
 HAVING `teachers_sharing_the_same_office` > 1
 
 -- Calcolare la media dei voti di ogni appello d'esame
-SELECT `exam_id` AS `appello`, AVG(`vote`) AS `vote_average`
+SELECT `exam_id` AS `appello`, ROUND(AVG(`vote`)) AS `vote_average`
 FROM `exam_student`
 GROUP BY `exam_id`
 
